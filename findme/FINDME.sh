@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1/556411#556411
+# time ./FINDME.sh
+
+# v0        12.96 real         0.53 user         4.20 sys
 
 # TODO
 # - load services from codeowners files

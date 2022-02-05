@@ -12,8 +12,21 @@
 # shellcheck source=/dev/null
 source .env
 
-while read -r SERVICE; do
+# while read -r SERVICE; do
 
-find "$REPO$SERVICE" -type d -name node_modules -prune -o -type f -name "*.md" -print
 
-done <<<"$(cut -d' ' -f 1 < .services)"
+# git --git-dir=/mycode/.git --work-tree=/mycode status
+# https://marc.info/?l=git&m=120956110207686&w=2
+git --git-dir="$REPO/.git" --work-tree="$REPO" ls-files --cached --modified --other --exclude-standard | grep --extended-regexp '.md'
+
+# IGNORE=$(find "$REPO$SERVICE" -type f -name ".gitignore" -exec cat {} + | grep --invert-match --extended-regexp '#|^[[:space:]]*$' | tr '\n' ' ')
+# echo "$IGNORE"
+
+# find "$REPO$SERVICE" -type f -name ".gitignore" -exec cat {} + | grep --invert-match --extended-regexp '#|^[[:space:]]*$'
+
+
+# find "$REPO$SERVICE" -type f -name ".gitignore" -exec bash -c 'echo "$i"' \; | grep --invert-match --extended-regexp '#|^[[:space:]]*$'
+
+# find "$REPO$SERVICE" -type d -name "$IGNORE" -prune -o -type f -name "*.md" -print
+
+# done <<<"$(cut -d' ' -f 1 < .services)"

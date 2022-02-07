@@ -13,4 +13,4 @@ SERVICES="$(cut -d' ' -f 1 < .services | tr '\n' '|')"
 SERVICES="${SERVICES%?}"
 
 # https://marc.info/?l=git&m=120956110207686&w=2
-git --git-dir="$REPO/.git" --work-tree="$REPO" ls-files --cached --modified --other --exclude-standard |  while read -r line; do echo "$REPO/$line"; done | grep --extended-regexp '.md' | grep --extended-regexp "$SERVICES"
+git --git-dir="$REPO/.git" --work-tree="$REPO" ls-files --cached --modified --other --exclude-standard |  while read -r line; do echo "$REPO/$line"; done | grep --extended-regexp '.md$' | grep --extended-regexp "$SERVICES"
